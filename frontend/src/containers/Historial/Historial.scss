@@ -1,0 +1,19 @@
+.historialInputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selectFecha {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: end;
+}
+
+.textoSelect {
+  margin: 0 5px;
+}
+
