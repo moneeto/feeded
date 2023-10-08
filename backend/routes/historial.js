@@ -11,9 +11,7 @@ async function traerHistorial(req, res) {
   try {
     let tiempoHistorial = req.body.tiempoHistorial;
 
-    const response = await historialModel.traerHistorial(tiempoHistorial)
-    
-    console.log(response)
+    const response = await historialModel.traerHistorial(parseInt(tiempoHistorial))
 
     res.status(200).send({mensaje:"Se obtuvo correctamente el historial", data: response})
   } catch (error) {

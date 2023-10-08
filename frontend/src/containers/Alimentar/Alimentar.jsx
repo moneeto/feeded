@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import moment from 'moment'
 import 'bootstrap/dist/css/bootstrap.css';
 import './Alimentar.scss'
+import patita from '../../media/patitaCorreccion.png'
 import Modal from 'react-modal';
 import { Link } from "react-router-dom"
 
@@ -125,7 +126,7 @@ export const Alimentar = () => {
     return <div className="spinner-border m-5" role="status" style={{ position: "absolute", top: "45%", left: "45%" }}></div>
   } else {
     return (
-      <>
+      <section className="seccionAlimentar">
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
@@ -141,11 +142,17 @@ export const Alimentar = () => {
           }} className="btn btn-primary">Aceptar</button>
         </Modal>
 
+        <div class="volverDiv">
+        <Link to={"/"}>
+              <div className="card">
+                <img src={patita} className="patita" style={{maxWidth: "150px",height: "auto"}}/>
+                <button className="btn">Volver</button>
+              </div>
+            </Link>
+        </div>
+
         <div className="menuAlimentar">
           <div className="descripcionAlimentar">
-          <Link to={"/"}>
-              <button className="btn btn-outline-secondary">Volver</button>
-            </Link>
             <h1>Alimentar</h1>
             <p>Seleccionar una acción que desee registrar sobre su mascota. A continuación, confirmar y envíar el formulario.</p>
           </div>
@@ -173,7 +180,16 @@ export const Alimentar = () => {
           </div>
           <button className="menuAlimentar-enviar btn btn-primary" type="submit" disabled={form.check !== true} onClick={guardarAccion}>Enviar</button>
         </div>
-      </>
+
+        <div class="inputMascotasDiv">
+          <h2>Mascotas</h2>
+          {/* Por cada mascota registrada en el abm, retornar un boton */}
+        </div>
+
+
+
+
+      </section>
     )
   }
 }
