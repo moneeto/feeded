@@ -6,6 +6,7 @@ import { Menu } from './containers/MenuPrincipal/Menu'
 import { Alimentar } from './containers/Alimentar/Alimentar'
 import { Historial } from './containers/Historial/Historial'
 import { Mascotas } from './containers/Mascotas/Mascotas'
+import { AltaMascota } from './containers/Mascotas/AltaMascota'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/alimentar' element={<Alimentar />} />
         <Route path='/historial' element={<Historial />} />
         <Route path='/mascotas' element={<Mascotas />} />
+        <Route path='/mascotas/alta-mascota' element={<AltaMascota />}/>
       </Routes>
       <Footer />
     </div>
