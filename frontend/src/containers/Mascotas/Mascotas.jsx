@@ -10,11 +10,12 @@ export const Mascotas = () => {
 
 
   return (
-    <section className='mascotasSection'>
+    <section className='container'>
 
       {/* Mis mascotas */}
       <div className="mascotasDiv">
         <h1>Mis mascotas</h1>
+        <hr />
         <div className="mascotas">
           {/* Mapear sobre las mascotas que tiene el usuario y retornar un componente de mascota por cada registro */}
           <Mascota alt={"Vini"} nombre="Vini" tipo="Gato" maxComidas={2}/>

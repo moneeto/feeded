@@ -154,6 +154,7 @@ export const Alimentar = () => {
         <div className="menuAlimentar">
           <div className="descripcionAlimentar">
             <h1>Alimentar</h1>
+            <hr />
             <p>Seleccionar una acción que desee registrar sobre su mascota. A continuación, confirmar y envíar el formulario.</p>
           </div>
 

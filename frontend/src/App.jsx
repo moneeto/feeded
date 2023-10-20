@@ -19,7 +19,6 @@ function App() {
         <Route path='/mascotas' element={<Mascotas />} />
         <Route path='/mascotas/alta-mascota' element={<AltaMascota />}/>
       </Routes>
-      <Footer />
     </div>
   )
 }
