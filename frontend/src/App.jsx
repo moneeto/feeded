@@ -18,6 +18,7 @@ function App() {
         <Route path='/historial' element={<Historial />} />
         <Route path='/mascotas' element={<Mascotas />} />
         <Route path='/mascotas/alta-mascota' element={<AltaMascota />}/>
+        <Route path='/mascotas/editar-mascota' element={<AltaMascota />}/>
       </Routes>
     </div>
   )
