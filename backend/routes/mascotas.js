@@ -7,14 +7,52 @@ router.get("/", getMascotas)
 router.post("/getMascota", getMascotaById)
 router.get("/getTiposMascotas", traerTiposMascotas)
 router.post("/agregarMascota", agregarMascota)
+router.put("/editarMascota", agregarMascota)
 
-async function agregarMascota(req, res) {
+async function eliminarMascota(req, res) {
   try {
-    //SEGUIR CON EL ABM DE LAS MACSOTAS
+    //SEGUIR CON EL ABM DE LAS MACSOTAS //Seguir con el model
   } catch (error) {
     
   }
 }
+
+async function editarMascota(req, res) {
+  try {
+    let request = {}
+    let validoForm = true
+    request.nombre = req.body.nombre
+    request.tipo_mascota = req.body.tipo_mascota
+    request.max_comidas_permitidas = req.body.max_comidas_permitidas
+    request.idDueno = req.body.idDueno
+    request.foto = req.body.foto
+    request.idMascota = req.body?.idMascota
+
+    await mascotasModel.editarMascota(request) //Seguir con el model
+
+  } catch (error) {
+    
+  }
+}
+
+async function agregarMascota(req, res) {
+  try {
+    let request = {}
+    let validoForm = true
+    request.nombre = req.body.nombre
+    request.tipo_mascota = req.body.tipo_mascota
+    request.max_comidas_permitidas = req.body.max_comidas_permitidas
+    request.idDueno = req.body.idDueno
+    request.foto = req.body.foto
+    request.idMascota = req.body?.idMascota
+
+    await mascotasModel.agregarMascota(request) //Seguir con el model
+
+  } catch (error) {
+    
+  }
+}
+
 
 async function getMascotaById(req, res) {
   try {

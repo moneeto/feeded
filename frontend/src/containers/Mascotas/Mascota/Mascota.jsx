@@ -50,8 +50,9 @@ export const Mascota = (props) => {
       contentLabel="Example Modal">
         <div>
           <h1>Mascotas</h1>
-          <p>Estás seguro que deseas borrar esta mascota?</p>
-          <button onClick={handleDelete}>Confirmar</button>
+          <p>¿Estás seguro/a que deseas borrar a <b style={{fontWeight:500}}>{props.nombre}</b>?</p>
+          <button className='btn btn-outline-secondary' onClick={() => setModalConfirmation({...modalConfirmation, show:false, mascotaABorrar:null})}>Volver</button>
+          <button className='btn btn-primary' onClick={handleDelete} style={{marginLeft:"10px"}}>Confirmar</button>
         </div>
       </Modal>
       <img src={gatito} alt={props.nombre} style={{ height: "auto", maxWidth: "220px", borderTopLeftRadius: "14px", borderTopRightRadius: "14px" }} />
