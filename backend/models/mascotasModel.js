@@ -1,5 +1,43 @@
 const { comioLaGataDB } = require("../mysql");
 
+async function editarMascota(request) {
+  return new Promise(async (resolve, reject) => {
+    try {
+
+      let sql = `
+      UPDATE mascotas SET nombre = ?, tipo_mascota = ?, max_comidas_permitidas = ?, idDueno = ?, foto = null WHERE id = ?
+    `
+  
+    let params = [request.nombre, request.tipo_mascota, request.max_comidas_permitidas, request.idDueno]
+
+    let results = await comioLaGataDB.query(sql, params)
+    resolve(results[0])
+    } catch (error) {
+      console.log(error)
+      reject(error)
+    }
+  })
+}
+
+
+async function agregarMascota(request) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let sql = `
+      INSERT INTO mascotas (id, nombre, tipo_mascota, max_comidas_permitidas, idDueno, foto) VALUES (id, ?, ?, ?, ?, null) 
+    `
+
+    let params = [request.nombre, request.tipo_mascota, request.max_comidas_permitidas, request.idDueno]
+
+    let results = await comioLaGataDB.query(sql, params)
+    resolve(results[0])
+    } catch (error) {
+      console.log(error)
+      reject(error)
+    }
+  })
+}
+
 async function getMascota(idMascota) {
   return new Promise(async (resolve, reject) => {
     try {
@@ -79,5 +117,7 @@ async function traerTiposMascotas(request) {
 module.exports = {
   traerTiposMascotas,
   getMascotas,
-  getMascota
+  getMascota,
+  editarMascota,
+  agregarMascota
 }

@@ -11,7 +11,7 @@ export const AltaMascota = () => {
     foto: ''
   }
   const [agregarForm, setAgregarForm] = useState(initForm)
-  const [editarForm, setEditarForm] = useState(initForm) /* falta implementar */
+  const [editarForm, setEditarForm] = useState(initForm)
   const [tiposMascotas, setTiposMascotas] = useState([])
   const location = useLocation()
   const idMascota = location.state?.idMascota
@@ -96,6 +96,7 @@ export const AltaMascota = () => {
           }
         })
         const data = await response.json()
+        console.log(data)
       } else {
         const response = await fetch(`http://localhost:9000/mascotas/guardarMascota`, {
           method: "POST",
@@ -105,6 +106,7 @@ export const AltaMascota = () => {
           }
         })
         const data = await response.json()
+        console.log(data)
       }
 
     } catch (error) {
