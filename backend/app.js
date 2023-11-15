@@ -4,6 +4,7 @@ const menu = require("./routes/menu")
 const alimentar = require("./routes/alimentar")
 const historial = require("./routes/historial")
 const mascotas = require("./routes/mascotas")
+const usuarios = require("./routes/usuarios")
 const app = express()
 const port = process.env.PORT
 const cors = require('cors');
@@ -18,5 +19,6 @@ app.use("/menu", menu)
 app.use("/alimentar", alimentar)
 app.use("/historial", historial)
 app.use("/mascotas", mascotas)
+app.use("/usuarios", usuarios)
 
 module.exports = app

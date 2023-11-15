@@ -7,12 +7,14 @@ import { Alimentar } from './containers/Alimentar/Alimentar'
 import { Historial } from './containers/Historial/Historial'
 import { Mascotas } from './containers/Mascotas/Mascotas'
 import { AltaMascota } from './containers/Mascotas/AltaMascota'
+import { Login } from './containers/Usuarios/Login'
 
 function App() {
   return (
     <div className='app'>
       <Navbar />
       <Routes>
+        <Route path='/login' element={<Login />} />
         <Route path='/' element={<Menu />} />
         <Route path='/alimentar' element={<Alimentar />} />
         <Route path='/historial' element={<Historial />} />

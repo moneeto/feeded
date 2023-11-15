@@ -52,7 +52,7 @@ async function agregarMascota(req, res) {
     await mascotasModel.agregarMascota(request) //Seguir con el model
 
   } catch (error) {
-    
+    res.status(409).send({mensaje: "No se pudo agregar la mascota", error})
   }
 }
 

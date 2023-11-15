@@ -98,7 +98,7 @@ export const AltaMascota = () => {
         const data = await response.json()
         console.log(data)
       } else {
-        const response = await fetch(`http://localhost:9000/mascotas/guardarMascota`, {
+        const response = await fetch(`http://localhost:9000/mascotas/agregarMascota`, {
           method: "POST",
           body: JSON.stringify(agregarForm),
           headers: {
