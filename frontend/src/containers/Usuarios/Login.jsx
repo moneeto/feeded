@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Login.scss'
 import { FaRegTimesCircle } from "react-icons/fa";
-import {Navigate} from 'react-router-dom'
+import {Navigate, useNavigate} from 'react-router-dom'
 
 export const Login = () => {
 
@@ -15,6 +15,8 @@ export const Login = () => {
     exito: false,
     respuesta: {}
   })
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -49,6 +51,11 @@ export const Login = () => {
 
       localStorage.setItem("userId", d.respuesta.idUsuario)
       localStorage.setItem("usuario", d.respuesta.usuario)
+
+      if(d.exito) {
+        navigate("/")
+        window.location.reload()
+      }
       
     } catch (error) {
 
