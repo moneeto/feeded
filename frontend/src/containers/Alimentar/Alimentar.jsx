@@ -19,6 +19,10 @@ export const Alimentar = () => {
   const [ultimaAccion, setUltimaAccion] = useState({})
   const [modalIsOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false)
+  const [mascotas, setMascotas] = useState([])
+  const [mascotasSeleccionadas, setMascotasSeleccionadas] = useState([])
+  const [mascotaSeleccionada, setMascotaSeleccionada] = useState(false)
+
 
   const customStyles = {
     content: {
@@ -36,6 +40,7 @@ export const Alimentar = () => {
 
   useEffect(() => {
     getAcciones()
+    getMascotasByFamilia()
   }, [])
 
 
@@ -72,6 +77,23 @@ export const Alimentar = () => {
       setUltimaAccion(data)
     } catch (error) {
       console.log(error)
+    }
+  }
+
+  const getMascotasByFamilia = async () => {
+    try {
+      const response = await fetch('http://localhost:9000/mascotas/getMascotasByFamilia', {
+        method: "POST",
+        body: JSON.stringify({ idFamilia: parseInt(localStorage.getItem("idFamilia")) }),
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+      const data = await response.json()
+      setMascotas(data.mascotas)
+      console.log(mascotas)
+    } catch (error) {
+      
     }
   }
 
@@ -114,13 +136,33 @@ export const Alimentar = () => {
     }
   }
 
-  function openModal() {
+  const openModal = () => {
     setIsOpen(true);
   }
 
-  function closeModal() {
+  const closeModal = () => {
     setIsOpen(false);
   }
+
+  const handleSeleccionarMascota = (idMascota) => {
+    let aux = [...mascotasSeleccionadas]
+    
+    const existe = aux.some(mascota => mascota === idMascota);
+    
+    if(existe) {
+      return;
+    } else {
+      aux.push(idMascota)
+      setMascotasSeleccionadas(aux)
+    }
+  }
+  const handleDeseleccionarMascota = (idMascota) => {
+    let aux = [...mascotasSeleccionadas]
+
+    let nuevaLista = aux.filter(mascota => mascota !== idMascota)
+    setMascotasSeleccionadas(nuevaLista)
+  }
+  console.log(mascotasSeleccionadas)
 
   if (loading) {
     return <div className="spinner-border m-5" role="status" style={{ position: "absolute", top: "45%", left: "45%" }}></div>
@@ -143,7 +185,7 @@ export const Alimentar = () => {
         </Modal>
 
         <div class="volverDiv">
-        <Link to={"/"}>
+        <Link to={"/home"}>
               <div className="card">
                 <img src={patita} className="patita" style={{maxWidth: "150px",height: "auto"}}/>
                 <button className="btn">Volver</button>
@@ -157,10 +199,10 @@ export const Alimentar = () => {
             <hr />
             <p>Seleccionar una acción que desee registrar sobre su mascota. A continuación, confirmar y envíar el formulario.</p>
           </div>
-
-          <div className="ultimoRegistro">
+          {/* pensar */}
+          {/* <div className="ultimoRegistro">
             {ultimaAccion.idAccion && <span>ÚLTIMO REGISTRO: {ultimaAccion.nombreApellido} le hizo {ultimaAccion.accion} por última vez el día <b>{moment(ultimaAccion.fechaAccion).format("DD/MM/YYYY h:mm:ss A")}</b></span>}
-          </div>
+          </div> */}
 
           <div className="row form-div">
             <form className="menuAlimentar-form" onSubmit={guardarAccion}>
@@ -182,9 +224,13 @@ export const Alimentar = () => {
           <button className="menuAlimentar-enviar btn btn-primary" type="submit" disabled={form.check !== true} onClick={guardarAccion}>Enviar</button>
         </div>
 
-        <div class="inputMascotasDiv">
+        <div className="inputMascotasDiv">
           <h2>Mascotas</h2>
-          {/* Por cada mascota registrada en el abm, retornar un boton */}
+          {mascotas && mascotas?.map((m, index) => {
+            const isSelected = mascotasSeleccionadas.includes(m.id);
+            return <button type="button" style={isSelected ? {boxShadow: "0px 0px 10px 1px #1952b5", background:"lightblue", opacity: "60%"} : {}} onClick={() => {!isSelected ? handleSeleccionarMascota(m.id) : handleDeseleccionarMascota(m.id)}} className="mascota-button">{m.nombre}</button>
+          })}
+          
         </div>
 
 

@@ -18,7 +18,7 @@ function App() {
   
 
   useEffect(() => {
-    if(localStorage.getItem("userId") && localStorage.getItem("userId") !== undefined) {
+    if(localStorage.getItem("userId") && localStorage.getItem("userId") !== undefined && localStorage.getItem("userId") !== "") {
       setIsLoggedIn(true)
     } else {
       navigate("/login")
@@ -31,14 +31,14 @@ function App() {
       <Routes>
         {!isLoggedIn ? <Route path='/login' element={<Login />} /> : 
         <>
-        <Route path='/' element={<Menu />} />
+        <Route path='/home' element={<Menu />} />
         <Route path='/alimentar' element={<Alimentar />} />
         <Route path='/historial' element={<Historial />} />
         <Route path='/mascotas' element={<Mascotas />} />
         <Route path='/mascotas/alta-mascota' element={<AltaMascota />}/>
         <Route path='/mascotas/editar-mascota' element={<AltaMascota />}/>
 
-        <Route path='*' element={<Navigate to="/" />} />
+        <Route path='*' element={<Navigate to="/home" />} />
         </>}
         
         

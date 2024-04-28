@@ -7,7 +7,21 @@ router.get("/", getMascotas)
 router.post("/getMascota", getMascotaById)
 router.get("/getTiposMascotas", traerTiposMascotas)
 router.post("/agregarMascota", agregarMascota)
-router.put("/editarMascota", editarMascota)
+router.post("/editarMascota", editarMascota)
+router.post("/getMascotasByFamilia", getMascotasByFamilia)
+
+async function getMascotasByFamilia(req, res) {
+  try {
+    let idFamilia = req.body.idFamilia
+
+    let mascotas = await mascotasModel.getMascotasByFamilia(idFamilia)
+    res.status(200).send({mensaje: "Mascotas obtenidas exitosamente.", mascotas: mascotas})
+
+  } catch (error) {
+    console.log(error)
+    res.status(409).send({mensaje: "No se pudo obtener las mascotas", error})
+  }
+}
 
 async function eliminarMascota(req, res) {
   try {

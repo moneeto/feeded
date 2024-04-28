@@ -1,12 +1,15 @@
 const { comioLaGataDB } = require("../mysql");
 
-async function logUser(request) {
+async function getUserByLogin(request) {
   return new Promise(async (resolve, reject) => {
     try {
       let username = request.username
       let password = request.password
   
-      let sql = `SELECT * from usuarios WHERE usuario = ? AND password = ?`
+      let sql = `SELECT u.*, f.familia 
+      from usuarios u
+      INNER JOIN familias f ON u.idFamilia = f.idFamilia
+      WHERE usuario = ? AND password = ?`
       let params = [username, password]
   
       const res = await comioLaGataDB.query(sql, params)
@@ -22,5 +25,5 @@ async function logUser(request) {
 }
 
 module.exports = {
-  logUser
+  getUserByLogin
 }

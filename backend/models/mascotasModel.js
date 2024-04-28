@@ -114,10 +114,31 @@ async function traerTiposMascotas(request) {
   })
 }
 
+async function getMascotasByFamilia(idFamilia) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let sql = `
+    SELECT m.* FROM mascotas m
+    INNER JOIN familias f on m.idFamilia = f.idFamilia
+    WHERE f.idFamilia = ?
+    `
+
+    let params = [idFamilia]
+
+    let results = await comioLaGataDB.query(sql, params)
+    resolve(results[0])
+    } catch (error) {
+      console.log(error)
+      reject(error)
+    }
+  })
+}
+
 module.exports = {
   traerTiposMascotas,
   getMascotas,
   getMascota,
   editarMascota,
-  agregarMascota
+  agregarMascota,
+  getMascotasByFamilia
 }
