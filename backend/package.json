@@ -1,0 +1,16 @@
+{
+    "name": "feeded",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js",
+      "dev": "nodemon app.js"
+    },
+    "dependencies": {},
+    "devDependencies": {
+      "nodemon": "^2.0.15"
+    },
+    "author": "",
+    "license": "ISC"
+  }
